@@ -1,0 +1,2 @@
+# InfinityNikki-AHK-flex
+Waiting
