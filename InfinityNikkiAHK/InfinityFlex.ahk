@@ -1,15 +1,16 @@
 ﻿/*
 Ahk для Infinity Nikki
 
+GIFTTONIKKI
+GIFTFROMMOMO
+BDAYSURPRISE
 infinitynikki1205
 
 
-Запланировано:
-Бхоп
-Игра на инструментах через миди
-Рыбалка
-
-
+Изменения: 05.12.2024
+ - Фикс Фастлут
+ - Скип диалогов
+ - Асистер Рыбалки
 
 Изменения: 30.11.2024
  - Фастлут
@@ -70,10 +71,11 @@ Loop, parse, GroupNameMapVar, `n, `r
 
 IniRead, WindowFocus, data\Config.ini, Settings, WindowFocus
 IniRead, SkipNPCLockMode, data\Config.ini, Settings, SkipNPCLockMode
-IniRead, FastlytFastMode, data\Config.ini, Settings, FastlytFastMode
+; IniRead, FastlytFastMode, data\Config.ini, Settings, FastlytFastMode
 IniRead, MapRunUrl, data\Config.ini, Settings, MapRunUrl
 
 
+IniRead, key_fishing, data\Config.ini, Settings, key_fishing
 IniRead, key_SkipNPC, data\Config.ini, Settings, key_SkipNPC
 IniRead, key_Fastlyt, data\Config.ini, Settings, key_Fastlyt
 IniRead, key_Map, data\Config.ini, Settings, key_Map
@@ -81,11 +83,15 @@ IniRead, key_Map, data\Config.ini, Settings, key_Map
 IniRead, key_EndExitapp, data\Config.ini, Settings, key_EndExitapp
 IniRead, key_Reload, data\Config.ini, Settings, key_Reload
 
+IniRead, Checkbox_Fishing, data\Config.ini, Settings, Checkbox_Fishing
 IniRead, Checkbox_SkipNPC, data\Config.ini, Settings, Checkbox_SkipNPC
 IniRead, Checkbox_Fastlyt, data\Config.ini, Settings, Checkbox_Fastlyt
 IniRead, Checkbox_Map, data\Config.ini, Settings, Checkbox_Map
 IniRead, Checkbox_Reload, data\Config.ini, Settings, Checkbox_Reload
 
+
+if Checkbox_Fishing
+	Hotkey, *~$%key_fishing%, Label_fishing, on
 if Checkbox_SkipNPC
 	Hotkey, *~$%key_SkipNPC%, Label_SkipNPC, on
 if Checkbox_Fastlyt
@@ -119,6 +125,25 @@ Else
 Return
 
 
+;============================Спам RButon
+Label_fishing:
+Sleep 50
+IfWinNotActive, %WindowFocus%
+	Return
+if FuncCursorVisible()
+	Return
+Loop
+{
+	GetKeyState, SpaceVar, %key_fishing%, P
+	If SpaceVar = U
+		break 
+	SendInput {Blind}{vk2 down} 	;F
+	Sleep 1
+	SendInput {Blind}{vk2 up} 	;F
+	FuncRandomSleep()
+}
+return
+
 ;============================Фастлут
 Label_fastlyt:
 Sleep 130
@@ -131,10 +156,9 @@ Loop
 	GetKeyState, SpaceVar, %key_Fastlyt%, P
 	If SpaceVar = U
 		break 
-	SendInput {Blind}{vk46} 	;F
-	sleep 1
-	if FastlytFastMode
-	SendInput, {Blind}{WheelDown}
+	SendInput {Blind}{vk46 down} 	;F
+	Sleep 1
+	SendInput {Blind}{vk46 up} 	;F
 	FuncRandomSleep()
 }
 return
@@ -144,8 +168,8 @@ return
 Label_SkipNPC:
 Sleep 150
 
-xSkip:=round(A_ScreenWidth * (1740 / 2560))
-ySkip:=round(A_ScreenHeight * (940 / 1440))
+xSkip:=round(A_ScreenWidth * (1830 / 2560))
+ySkip:=round(A_ScreenHeight * (1020 / 1440))
 
 ; xSkip2:=round(A_ScreenWidth * (155 / 2560))
 ; ySkip2:=round(A_ScreenHeight * (90 / 1440))
