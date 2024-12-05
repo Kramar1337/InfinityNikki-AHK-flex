@@ -26,7 +26,8 @@ End - Завершить работу
 ![hippo](https://media.giphy.com/media/LerrohpjasApOHH9G1/giphy.gif)
 
 2. Скачать репозиторий (Code > [Download Zip👌](https://github.com/Kramar1337/InfinityNikki-AHK-flex/archive/main.zip))
-3. Запустить.
+3. Запустить "InfinityFlex.ahk".
+4. *Настройки в "InfinityNikkiAHK\data\config.ini"
 
 ## Disclaimer 
 This project is intended solely for educational purposes. 
