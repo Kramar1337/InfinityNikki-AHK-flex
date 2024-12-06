@@ -1,10 +1,13 @@
 ﻿/*
 Ahk для Infinity Nikki
 
+infinitynikki1205
 GIFTTONIKKI
 GIFTFROMMOMO
 BDAYSURPRISE
-infinitynikki1205
+nikkihappybirthday2024
+NIKKITHEBEST
+QUACKQUACK
 
 
 Изменения: 05.12.2024
@@ -146,7 +149,7 @@ return
 
 ;============================Фастлут
 Label_fastlyt:
-Sleep 130
+Sleep 50
 IfWinNotActive, %WindowFocus%
 	Return
 if FuncCursorVisible()
